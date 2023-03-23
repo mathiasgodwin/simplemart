@@ -24,38 +24,35 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      // ignore: avoid_unnecessary_containers
-      bottomNavigationBar: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            GFButton(
-              color: Colors.black,
-              onPressed: () {
-                context
-                    .read<CartBloc>()
-                    .add(ProductAdded(product: widget.productData));
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(const SnackBar(
-                    content: Text('Item Added to Cart'),
-                    duration: Duration(seconds: 1),
-                  ));
-              },
-              text: 'ADD TO CART',
-            ),
-            GFButton(
-              color: theme.primaryColor,
-              onPressed: () {
-                context
-                    .read<CartBloc>()
-                    .add(ProductAdded(product: widget.productData));
-                Navigator.of(context).push<void>(CartPage.route());
-              },
-              text: 'BUY NOW',
-            )
-          ],
-        ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          GFButton(
+            color: Colors.black,
+            onPressed: () {
+              context
+                  .read<CartBloc>()
+                  .add(ProductAdded(product: widget.productData));
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(const SnackBar(
+                  content: Text('Item Added to Cart'),
+                  duration: Duration(seconds: 1),
+                ));
+            },
+            text: 'ADD TO CART',
+          ),
+          GFButton(
+            color: theme.primaryColor,
+            onPressed: () {
+              context
+                  .read<CartBloc>()
+                  .add(ProductAdded(product: widget.productData));
+              Navigator.of(context).push<void>(CartPage.route());
+            },
+            text: 'BUY NOW',
+          )
+        ],
       ),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),

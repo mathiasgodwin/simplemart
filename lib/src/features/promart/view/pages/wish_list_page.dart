@@ -17,17 +17,14 @@ class WishlistPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text(
           'My Wish List',
-          style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         actions: const [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
               Icons.shopping_basket_outlined,
-              color: Colors.black,
             ),
           ),
         ],
@@ -68,9 +65,9 @@ class _WishlistItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.watch<WishlistBloc>();
+    final bloc = context.read<WishlistBloc>();
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
           IconButton(
@@ -80,8 +77,8 @@ class _WishlistItem extends StatelessWidget {
           Expanded(
             child: SizedNetworkImage(
               imageUrl: item.product.image,
-              imageWidth: 40.0,
-              imageHeight: 40.0,
+              imageWidth: 40,
+              imageHeight: 40,
             ),
           ),
         ],

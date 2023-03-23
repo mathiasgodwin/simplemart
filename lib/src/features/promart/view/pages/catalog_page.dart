@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:promart/promart.dart';
+import 'package:responsive_grid_list/responsive_grid_list.dart';
 import 'package:simplemart/src/configs/theme/styles.dart';
 import 'package:simplemart/src/core/utils/utils.dart';
 import 'package:simplemart/src/features/promart/logic/logic.dart';
@@ -63,8 +65,8 @@ class CatalogPage extends StatelessWidget {
 
 class _BodyListView extends StatelessWidget {
   const _BodyListView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -92,16 +94,8 @@ class _BodyListView extends StatelessWidget {
 }
 
 class _ProductsAdsCarouselBig extends StatelessWidget {
-  const _ProductsAdsCarouselBig({Key? key}) : super(key: key);
+  const _ProductsAdsCarouselBig({super.key});
 
-  // ignore: avoid_field_initializers_in_const_classes
-  final List<String> _imagePath = const [
-    'carousel_landscape_1',
-    'carousel_landscape_2',
-    'carousel_landscape_3',
-    'carousel_landscape_4',
-    'carousel_landscape_5',
-  ];
   @override
   Widget build(BuildContext context) {
     return GFCarousel(
@@ -110,7 +104,7 @@ class _ProductsAdsCarouselBig extends StatelessWidget {
       enableInfiniteScroll: false,
       scrollPhysics: const BouncingScrollPhysics(),
       items: <Widget>[
-        for (final item in _imagePath)
+        for (int i = 1; i <= 5; i++)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: ClipRRect(
@@ -118,7 +112,7 @@ class _ProductsAdsCarouselBig extends StatelessWidget {
                 Radius.circular(10),
               ),
               child: Image.asset(
-                'assets/images/$item.jpg',
+                'assets/images/carousel_landscape_$i.jpg',
                 gaplessPlayback: true,
                 fit: BoxFit.cover,
               ),
@@ -130,7 +124,7 @@ class _ProductsAdsCarouselBig extends StatelessWidget {
 }
 
 class _AllProductsGrid extends StatelessWidget {
-  const _AllProductsGrid({Key? key}) : super(key: key);
+  const _AllProductsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -147,12 +141,12 @@ class _AllProductsGrid extends StatelessWidget {
                     Text(state.errorMessage ?? 'Could not load, try again'),
               ),
             );
-        } else if (state.status == PromartCatalogStatus.loaded) {}
+        }
       },
       builder: (context, state) {
         if (state.status == PromartCatalogStatus.loaded) {
           return _ProductGridWidget(
-            state: state,
+            data: state.catalog!,
           );
         } else if (state.status == PromartCatalogStatus.loading) {
           return const Center(
@@ -178,75 +172,79 @@ class _AllProductsGrid extends StatelessWidget {
 }
 
 class _ProductGridWidget extends StatelessWidget {
-  final PromartCatalogState state;
+  final AllProductModel data;
 
   const _ProductGridWidget({
-    required this.state,
-    Key? key,
-  }) : super(key: key);
+    required this.data,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const ScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.8,
-      ),
-      itemCount: state.catalog!.data.length,
-      itemBuilder: (BuildContext context, int index) {
-        final item = state.catalog!.data[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.of(context).push<void>(ProductDetailsPage(item).route());
-          },
-          child: GFCard(
-            padding: EdgeInsets.zero,
-            image: Image.network(
-              item.image,
-              width: 150,
-              height: 100,
-            ),
-            showImage: true,
-            title: GFListTile(
-              title: Text(
-                item.title,
-                maxLines: 1,
-                softWrap: true,
-                style: const TextStyle(
-                  overflow: TextOverflow.clip,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
+    return ResponsiveGridList(
+      listViewBuilderOptions: ListViewBuilderOptions(
+          shrinkWrap: true, physics: const ScrollPhysics()),
+      horizontalGridSpacing: 16,
+      verticalGridSpacing: 16,
+      horizontalGridMargin: 1,
+      verticalGridMargin: 1,
+      minItemWidth: 150,
+      minItemsPerRow: 1,
+      maxItemsPerRow: 20,
+      children: data.data.map(
+        (item) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push<void>(ProductDetailsPage(item).route());
+            },
+            child: GFCard(
+              padding: EdgeInsets.zero,
+              image: Image.network(
+                item.image,
+                width: 150,
+                height: 100,
+              ),
+              showImage: true,
+              title: GFListTile(
+                title: Text(
+                  item.title,
+                  maxLines: 1,
+                  softWrap: true,
+                  style: const TextStyle(
+                    overflow: TextOverflow.clip,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subTitle: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      item.title,
+                      maxLines: 1,
+                      softWrap: true,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        overflow: TextOverflow.clip,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Text(
+                      '\$${item.price.toString()}',
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              subTitle: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    item.title,
-                    maxLines: 1,
-                    softWrap: true,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      overflow: TextOverflow.clip,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    '\$${item.price.toString()}',
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ).toList(),
     );
   }
 }
