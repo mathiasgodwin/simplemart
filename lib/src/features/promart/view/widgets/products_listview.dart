@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:simplemart/src/core/utils/screen/screen_util.dart';
 import 'package:simplemart/src/features/promart/logic/logic.dart';
 import 'package:simplemart/src/features/promart/view/view.dart';
 
@@ -12,8 +11,7 @@ class ProductByCategoryName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _w = size(context).width;
-
+    final theme = Theme.of(context);
     return BlocConsumer<ProductsByCategoriesCubit, ProductsByCategoriesState>(
       buildWhen: (prev, current) => prev != current,
       listener: (context, state) {
@@ -21,14 +19,14 @@ class ProductByCategoryName extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
-                content:
-                    Text(state.errorMessage ?? 'Could not load, try again')));
+              content: Text(state.errorMessage ?? 'Could not load, try again'),
+            ));
         } else if (state.status == ProductByCategoriesStatus.loading) {}
       },
       builder: (context, state) {
         if (state.status == ProductByCategoriesStatus.loaded) {
           return Container(
-            color: Colors.white,
+            color: theme.cardColor,
             margin: const EdgeInsets.only(left: 8, right: 8),
             height: 270,
             width: double.infinity,
@@ -54,19 +52,19 @@ class ProductByCategoryName extends StatelessWidget {
                       ),
                       showImage: true,
                       title: GFListTile(
-                        padding: const EdgeInsets.all(0.0),
-                        margin: const EdgeInsets.symmetric(horizontal: 0.0),
+                        padding: EdgeInsets.zero,
+                        margin: EdgeInsets.zero,
                         title: Text(
                           item.title,
                           maxLines: 1,
                           softWrap: true,
                           style: const TextStyle(
-                              overflow: TextOverflow.clip,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.clip,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         subTitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -96,51 +94,13 @@ class ProductByCategoryName extends StatelessWidget {
             ),
           );
         } else if (state.status == ProductByCategoriesStatus.loading) {
-          return Center(
-            child: GFShimmer(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 56,
-                      height: 46,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          color: Colors.white,
-                          height: 8,
-                          width: double.infinity,
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          color: Colors.white,
-                          height: 8,
-                          width: _w * 0.5,
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          color: Colors.white,
-                          height: 8,
-                          width: _w * 0.25,
-                        ),
-                      ],
-                    ))
-                  ],
-                ),
-              ),
-            ),
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
           );
         } else if (state.status == ProductByCategoriesStatus.failure) {
           return Center(
             child: GFIconButton(
-              color: Colors.purple,
+              color: theme.primaryColor,
               shape: GFIconButtonShape.circle,
               size: GFSize.LARGE,
               icon: const Icon(Icons.replay),

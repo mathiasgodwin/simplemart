@@ -15,36 +15,39 @@ class CatalogPage extends StatelessWidget {
   static const String route = 'Catalog';
 
   /// Static method to return the widget as a PageRoute
-  static Route go() => MaterialPageRoute<void>(builder: (_) => CatalogPage());
+  static Route go() =>
+      MaterialPageRoute<void>(builder: (_) => const CatalogPage());
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        key: const ValueKey<int>(0),
         leadingWidth: 1,
         leading: const SizedBox(),
         elevation: 0,
-        backgroundColor: Colors.purple,
+        backgroundColor: theme.primaryColor,
         title: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'Promart!',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: kToolbarHeight * 0.4,
-                fontWeight: FontWeight.bold,
+          children: [
+            Flexible(
+              child: Text(
+                'Promart!',
+                style: TextStyle(
+                  color: theme.colorScheme.onPrimary,
+                  fontSize: kToolbarHeight * 0.4,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            SizedBox(
-              height: kToolbarHeight * 0.08,
+            const Flexible(
+              child: Text("Let's go shopping"),
             ),
-            Text("Let's go shopping", style: TextStyle()),
           ],
         ),
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded)),
+          const IconButton(onPressed: null, icon: Icon(Icons.search_rounded)),
           IconButton(
             onPressed: () {
               Navigator.of(context).push(CartPage.route());
@@ -67,15 +70,27 @@ class _BodyListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
+      padding: EdgeInsets.symmetric(horizontal: Insets.lg),
       children: <Widget>[
         VSpace.s10,
-
-        const _RowDivider('Electronics'),
+        const Text(
+          'Electronics',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
         VSpace.s10,
         const ProductByCategoryName(category: 'electronics'),
         //
         VSpace.s10,
-        const _RowDivider('New Arrival'),
+        const Text(
+          'New Arrival',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
         VSpace.s10,
         const _ProductsAdsCarouselBig(),
         VSpace.s25,
@@ -89,6 +104,7 @@ class _BodyListView extends StatelessWidget {
 class _ProductsAdsCarouselBig extends StatelessWidget {
   const _ProductsAdsCarouselBig({Key? key}) : super(key: key);
 
+  // ignore: avoid_field_initializers_in_const_classes
   final List<String> _imagePath = const [
     'carousel_landscape_1',
     'carousel_landscape_2',
@@ -108,7 +124,7 @@ class _ProductsAdsCarouselBig extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: ClipRRect(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(10),
               ),
               child: Image.asset(
@@ -123,39 +139,12 @@ class _ProductsAdsCarouselBig extends StatelessWidget {
   }
 }
 
-class _RowDivider extends StatelessWidget {
-  const _RowDivider(this.text, {Key? key}) : super(key: key);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          GFButton(
-            onPressed: () {},
-            text: 'MORE',
-            color: Colors.purple,
-          )
-        ],
-      ),
-    );
-  }
-}
-
 class _AllProductsGrid extends StatelessWidget {
   const _AllProductsGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _w = size(context).width;
+    final theme = Theme.of(context);
     return BlocConsumer<PromartCatalogCubit, PromartCatalogState>(
       buildWhen: (prev, current) => prev != current,
       listener: (context, state) {
@@ -176,51 +165,13 @@ class _AllProductsGrid extends StatelessWidget {
             state: state,
           );
         } else if (state.status == PromartCatalogStatus.loading) {
-          return Center(
-            child: GFShimmer(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 56,
-                      height: 46,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            color: Colors.white,
-                            height: 8,
-                            width: double.infinity,
-                          ),
-                          const SizedBox(height: 6),
-                          Container(
-                            color: Colors.white,
-                            height: 8,
-                            width: _w * 0.5,
-                          ),
-                          const SizedBox(height: 6),
-                          Container(
-                            color: Colors.white,
-                            height: 8,
-                            width: _w * 0.25,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
           );
         } else if (state.status == PromartCatalogStatus.failure) {
           return Center(
             child: GFIconButton(
-              color: Colors.purple,
+              color: theme.primaryColor,
               shape: GFIconButtonShape.circle,
               size: GFSize.LARGE,
               icon: const Icon(Icons.replay),

@@ -15,17 +15,14 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text(
           'My Cart',
-          style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         actions: const [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
               Icons.shopping_cart_checkout_rounded,
-              color: Colors.black,
             ),
           ),
         ],

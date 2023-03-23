@@ -10,7 +10,6 @@ part 'wishlist_bloc.freezed.dart';
 class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   WishlistBloc() : super(WishlistState.initial()) {
     on<WishAdded>(_onWishAdded);
-    // on<WishRemoved>(_onWishRemoved);
   }
 
   void _onWishAdded(WishAdded event, Emitter<WishlistState> emit) {
@@ -25,13 +24,4 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
       emit(state.copyWith(items: items));
     }
   }
-
-  // void _onWishRemoved(WishRemoved event, Emitter<WishlistState> emit) {
-  //   final wishItem = event.item;
-  //   final isWished = state.items.contains(wishItem);
-  //   if (isWished) {
-  //     final items = state.items.rebuild((builder) => builder.remove(wishItem));
-  //     emit(state.copyWith(items: items));
-  //   } else {}
-  // }
 }

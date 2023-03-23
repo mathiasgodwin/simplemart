@@ -22,6 +22,7 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       // ignore: avoid_unnecessary_containers
       bottomNavigationBar: Container(
@@ -44,7 +45,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               text: 'ADD TO CART',
             ),
             GFButton(
-              color: Colors.purple,
+              color: theme.primaryColor,
               onPressed: () {
                 context
                     .read<CartBloc>()
@@ -56,7 +57,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Column(
@@ -64,7 +64,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           children: [
             Flexible(
               child: GFCard(
-                padding: const EdgeInsets.all(0),
+                padding: EdgeInsets.zero,
                 image: Image.network(
                   widget.productData.image,
                   height: 250,
@@ -109,12 +109,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       children: [
                         SizedBox(
                           width: 100,
-                          child: Text(widget.productData.title,
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
-                              maxLines: 1,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                          child: Text(
+                            widget.productData.title,
+                            softWrap: true,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -165,32 +169,32 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ],
                         ),
                         BlocBuilder<WishlistBloc, WishlistState>(
-                          buildWhen: (prev, current) =>
-                              prev.items != prev.items,
                           builder: (context, state) {
-                            final _item =
-                                WishAdded(product: widget.productData);
                             final _wish =
                                 WishlistItem(product: widget.productData);
 
                             // Check if item is a favorite already
-                            final _isWished = state.items.contains(_wish);
+                            final _isWished =
+                                state.items.contains(_wish);
                             return GFIconButton(
-                                key: const Key('GFIconbutton_wishlist_icon'),
-                                shape: GFIconButtonShape.circle,
-                                color: Colors.white,
-                                icon: _isWished
-                                    ? const Icon(
-                                        Icons.favorite,
-                                        color: Colors.red,
-                                      )
-                                    : const Icon(
-                                        Icons.favorite_border,
-                                        color: Colors.grey,
-                                      ),
-                                onPressed: () {
-                                  context.watch<WishlistBloc>().add(_item);
-                                });
+                              key: const Key('GFIconbutton_wishlist_icon'),
+                              shape: GFIconButtonShape.circle,
+                              color: Colors.white,
+                              icon: _isWished
+                                  ? const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    )
+                                  : const Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.grey,
+                                    ),
+                              onPressed: () {
+                                context.read<WishlistBloc>().add(
+                                      WishAdded(product: widget.productData),
+                                    );
+                              },
+                            );
                           },
                         )
                       ],
