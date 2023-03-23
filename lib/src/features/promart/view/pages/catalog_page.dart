@@ -72,16 +72,6 @@ class _BodyListView extends StatelessWidget {
       shrinkWrap: true,
       padding: EdgeInsets.symmetric(horizontal: Insets.lg),
       children: <Widget>[
-        VSpace.s10,
-        const Text(
-          'Electronics',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-        VSpace.s10,
-        const ProductByCategoryName(category: 'electronics'),
         //
         VSpace.s10,
         const Text(

@@ -174,8 +174,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                 WishlistItem(product: widget.productData);
 
                             // Check if item is a favorite already
-                            final _isWished =
-                                state.items.contains(_wish);
+                            final _isWished = state.items.contains(_wish);
                             return GFIconButton(
                               key: const Key('GFIconbutton_wishlist_icon'),
                               shape: GFIconButtonShape.circle,
@@ -266,47 +265,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
               ),
             ),
-            const Flexible(child: _RowDivider('RELATED PRODUCTS')),
-            Flexible(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 300),
-                child: BlocProvider(
-                  create: (context) => ProductsByCategoriesCubit(
-                    context.read<PromartRepository>(),
-                  )..getProductsByCategory('electronics'),
-                  child: const ProductByCategoryName(category: 'electronics'),
-                ),
-              ),
-            )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _RowDivider extends StatelessWidget {
-  const _RowDivider(this.text, {Key? key}) : super(key: key);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          GFButton(
-            onPressed: () {},
-            text: 'MORE',
-            color: Colors.purple,
-          )
-        ],
       ),
     );
   }
