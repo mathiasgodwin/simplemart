@@ -6,8 +6,6 @@ import 'package:promart/promart.dart';
 import 'package:simplemart/src/configs/theme/theme.dart';
 import 'package:simplemart/src/features/promart/logic/bloc/bloc.dart';
 import 'package:simplemart/src/features/promart/logic/bottom_bar_selector/bottom_bar_selector_cubit.dart';
-import 'package:simplemart/src/features/promart/logic/cubit/categories/categories_cubit.dart';
-import 'package:simplemart/src/features/promart/logic/cubit/products_by_categories/products_by_categories.dart';
 import 'package:simplemart/src/features/promart/logic/cubit/promart_catalogue/promart_catalogue_cubit.dart';
 import 'package:simplemart/src/features/promart/view/pages/splash_loader_page.dart';
 
@@ -40,18 +38,7 @@ class _AppBloc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CategoriesCubit>(
-          create: (_) => CategoriesCubit(
-            context.read<PromartRepository>(),
-          )..getCategories(),
-        ),
-        BlocProvider<ProductsByCategoriesCubit>(
-          create: (_) => ProductsByCategoriesCubit(
-            context.read<PromartRepository>(),
-          )
-            // Todo: create `enum` for category types.
-            ..getProductsByCategory('electronics'),
-        ),
+      
         BlocProvider<PromartCatalogCubit>(
           create: (_) => PromartCatalogCubit(
             context.read<PromartRepository>(),
