@@ -49,7 +49,6 @@ class CatalogPage extends StatelessWidget {
           ],
         ),
         actions: <Widget>[
-          const IconButton(onPressed: null, icon: Icon(Icons.search_rounded)),
           IconButton(
             onPressed: () {
               Navigator.of(context).push(CartPage.route());
