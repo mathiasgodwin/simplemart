@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'wishlist_item.dart';
 
@@ -11,29 +12,11 @@ part of 'wishlist_item.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 WishlistItem _$WishlistItemFromJson(Map<String, dynamic> json) {
   return _WishlistItem.fromJson(json);
 }
-
-/// @nodoc
-class _$WishlistItemTearOff {
-  const _$WishlistItemTearOff();
-
-  _WishlistItem call({required AllProductData product}) {
-    return _WishlistItem(
-      product: product,
-    );
-  }
-
-  WishlistItem fromJson(Map<String, Object?> json) {
-    return WishlistItem.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $WishlistItem = _$WishlistItemTearOff();
 
 /// @nodoc
 mixin _$WishlistItem {
@@ -50,57 +33,61 @@ mixin _$WishlistItem {
 abstract class $WishlistItemCopyWith<$Res> {
   factory $WishlistItemCopyWith(
           WishlistItem value, $Res Function(WishlistItem) then) =
-      _$WishlistItemCopyWithImpl<$Res>;
+      _$WishlistItemCopyWithImpl<$Res, WishlistItem>;
+  @useResult
   $Res call({AllProductData product});
 }
 
 /// @nodoc
-class _$WishlistItemCopyWithImpl<$Res> implements $WishlistItemCopyWith<$Res> {
+class _$WishlistItemCopyWithImpl<$Res, $Val extends WishlistItem>
+    implements $WishlistItemCopyWith<$Res> {
   _$WishlistItemCopyWithImpl(this._value, this._then);
 
-  final WishlistItem _value;
   // ignore: unused_field
-  final $Res Function(WishlistItem) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = freezed,
+    Object? product = null,
   }) {
     return _then(_value.copyWith(
-      product: product == freezed
+      product: null == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as AllProductData,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$WishlistItemCopyWith<$Res>
+abstract class _$$_WishlistItemCopyWith<$Res>
     implements $WishlistItemCopyWith<$Res> {
-  factory _$WishlistItemCopyWith(
-          _WishlistItem value, $Res Function(_WishlistItem) then) =
-      __$WishlistItemCopyWithImpl<$Res>;
+  factory _$$_WishlistItemCopyWith(
+          _$_WishlistItem value, $Res Function(_$_WishlistItem) then) =
+      __$$_WishlistItemCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({AllProductData product});
 }
 
 /// @nodoc
-class __$WishlistItemCopyWithImpl<$Res> extends _$WishlistItemCopyWithImpl<$Res>
-    implements _$WishlistItemCopyWith<$Res> {
-  __$WishlistItemCopyWithImpl(
-      _WishlistItem _value, $Res Function(_WishlistItem) _then)
-      : super(_value, (v) => _then(v as _WishlistItem));
+class __$$_WishlistItemCopyWithImpl<$Res>
+    extends _$WishlistItemCopyWithImpl<$Res, _$_WishlistItem>
+    implements _$$_WishlistItemCopyWith<$Res> {
+  __$$_WishlistItemCopyWithImpl(
+      _$_WishlistItem _value, $Res Function(_$_WishlistItem) _then)
+      : super(_value, _then);
 
-  @override
-  _WishlistItem get _value => super._value as _WishlistItem;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = freezed,
+    Object? product = null,
   }) {
-    return _then(_WishlistItem(
-      product: product == freezed
+    return _then(_$_WishlistItem(
+      product: null == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as AllProductData,
@@ -116,7 +103,8 @@ class _$_WishlistItem implements _WishlistItem {
   factory _$_WishlistItem.fromJson(Map<String, dynamic> json) =>
       _$$_WishlistItemFromJson(json);
 
-  @override // required bool isWish,
+// required bool isWish,
+  @override
   final AllProductData product;
 
   @override
@@ -128,27 +116,30 @@ class _$_WishlistItem implements _WishlistItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WishlistItem &&
-            const DeepCollectionEquality().equals(other.product, product));
+            other is _$_WishlistItem &&
+            (identical(other.product, product) || other.product == product));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(product));
 
   @JsonKey(ignore: true)
   @override
-  _$WishlistItemCopyWith<_WishlistItem> get copyWith =>
-      __$WishlistItemCopyWithImpl<_WishlistItem>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, product);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WishlistItemCopyWith<_$_WishlistItem> get copyWith =>
+      __$$_WishlistItemCopyWithImpl<_$_WishlistItem>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WishlistItemToJson(this);
+    return _$$_WishlistItemToJson(
+      this,
+    );
   }
 }
 
 abstract class _WishlistItem implements WishlistItem {
-  const factory _WishlistItem({required AllProductData product}) =
+  const factory _WishlistItem({required final AllProductData product}) =
       _$_WishlistItem;
 
   factory _WishlistItem.fromJson(Map<String, dynamic> json) =
@@ -158,6 +149,6 @@ abstract class _WishlistItem implements WishlistItem {
   AllProductData get product;
   @override
   @JsonKey(ignore: true)
-  _$WishlistItemCopyWith<_WishlistItem> get copyWith =>
+  _$$_WishlistItemCopyWith<_$_WishlistItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
