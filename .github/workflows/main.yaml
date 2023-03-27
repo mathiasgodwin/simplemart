@@ -27,3 +27,9 @@ jobs:
       includes: |
         **/*.md
       modified_files_only: false
+  coverage:
+    uses: VeryGoodOpenSource/very_good_coverage@v2
+    with:
+      path: '/coverage/lcov.info'
+      min_coverage: 80
+      exclude: '**/*_observer.dart **/change.dart'
