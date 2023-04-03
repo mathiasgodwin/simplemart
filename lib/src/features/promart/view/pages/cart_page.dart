@@ -6,7 +6,7 @@ import 'package:simplemart/src/features/promart/view/view.dart';
 import 'package:promart/promart.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => const CartPage());
   }
@@ -41,7 +41,7 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartListView extends StatelessWidget {
-  const _CartListView({required this.cartItems, Key? key}) : super(key: key);
+  const _CartListView({required this.cartItems, super.key});
 
   final BuiltList<CartItem> cartItems;
   double get totalPrice =>
@@ -60,7 +60,7 @@ class _CartListView extends StatelessWidget {
 }
 
 class _CartListItem extends StatelessWidget {
-  const _CartListItem({required this.item, Key? key}) : super(key: key);
+  const _CartListItem({required this.item, super.key});
 
   final CartItem item;
 
@@ -68,7 +68,7 @@ class _CartListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.watch<CartBloc>();
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
           IconButton(
@@ -78,8 +78,8 @@ class _CartListItem extends StatelessWidget {
           Expanded(
             child: SizedNetworkImage(
               imageUrl: item.product.image,
-              imageWidth: 40.0,
-              imageHeight: 40.0,
+              imageWidth: 40,
+              imageHeight: 40,
             ),
           ),
           Column(

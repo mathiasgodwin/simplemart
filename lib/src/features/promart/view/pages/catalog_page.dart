@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:promart/promart.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 import 'package:simplemart/src/configs/theme/styles.dart';
-import 'package:simplemart/src/core/utils/utils.dart';
 import 'package:simplemart/src/features/promart/logic/logic.dart';
 import 'package:simplemart/src/features/promart/view/view.dart';
 
@@ -63,13 +61,12 @@ class CatalogPage extends StatelessWidget {
 }
 
 class _BodyListView extends StatelessWidget {
-  const _BodyListView({
-    super.key,
-  });
+  const _BodyListView();
 
   @override
   Widget build(BuildContext context) {
     return ListView(
+      physics: const ScrollPhysics(),
       shrinkWrap: true,
       padding: EdgeInsets.symmetric(horizontal: Insets.lg),
       children: <Widget>[
@@ -83,7 +80,14 @@ class _BodyListView extends StatelessWidget {
           ),
         ),
         VSpace.s10,
-        const _ProductsAdsCarouselBig(),
+
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            minHeight: 40,
+            maxHeight: 300,
+          ),
+          child: const _ImageCarousel(),
+        ),
         VSpace.s25,
         const _AllProductsGrid(),
         //
@@ -92,20 +96,20 @@ class _BodyListView extends StatelessWidget {
   }
 }
 
-class _ProductsAdsCarouselBig extends StatelessWidget {
-  const _ProductsAdsCarouselBig({super.key});
+class _ImageCarousel extends StatelessWidget {
+  const _ImageCarousel();
 
   @override
   Widget build(BuildContext context) {
-    return GFCarousel(
-      viewportFraction: 0.7,
-      aspectRatio: 10 / 8,
-      enableInfiniteScroll: false,
-      scrollPhysics: const BouncingScrollPhysics(),
-      items: <Widget>[
+    return PageView(
+      physics: const BouncingScrollPhysics(),
+      controller: PageController(
+        viewportFraction: 0.7,
+      ),
+      children: [
         for (int i = 1; i <= 5; i++)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(10),
@@ -123,7 +127,7 @@ class _ProductsAdsCarouselBig extends StatelessWidget {
 }
 
 class _AllProductsGrid extends StatelessWidget {
-  const _AllProductsGrid({super.key});
+  const _AllProductsGrid();
 
   @override
   Widget build(BuildContext context) {
@@ -153,11 +157,12 @@ class _AllProductsGrid extends StatelessWidget {
           );
         } else if (state.status == PromartCatalogStatus.failure) {
           return Center(
-            child: GFIconButton(
+            child: IconButton(
               color: theme.primaryColor,
-              shape: GFIconButtonShape.circle,
-              size: GFSize.LARGE,
-              icon: const Icon(Icons.replay),
+              icon: const Icon(
+                Icons.replay,
+                size: 24,
+              ),
               onPressed: () {
                 context.read<PromartCatalogCubit>().loadCatalog();
               },
@@ -171,24 +176,21 @@ class _AllProductsGrid extends StatelessWidget {
 }
 
 class _ProductGridWidget extends StatelessWidget {
-  final AllProductModel data;
-
   const _ProductGridWidget({
     required this.data,
-    super.key,
   });
+  final AllProductModel data;
 
   @override
   Widget build(BuildContext context) {
     return ResponsiveGridList(
       listViewBuilderOptions: ListViewBuilderOptions(
-          shrinkWrap: true, physics: const ScrollPhysics()),
-      horizontalGridSpacing: 16,
-      verticalGridSpacing: 16,
+        shrinkWrap: true,
+        physics: const ScrollPhysics(),
+      ),
       horizontalGridMargin: 1,
       verticalGridMargin: 1,
       minItemWidth: 150,
-      minItemsPerRow: 1,
       maxItemsPerRow: 20,
       children: data.data.map(
         (item) {
@@ -197,48 +199,55 @@ class _ProductGridWidget extends StatelessWidget {
               Navigator.of(context)
                   .push<void>(ProductDetailsPage(item).route());
             },
-            child: GFCard(
-              padding: EdgeInsets.zero,
-              image: Image.network(
-                item.image,
-                width: 150,
-                height: 100,
-              ),
-              showImage: true,
-              title: GFListTile(
-                title: Text(
-                  item.title,
-                  maxLines: 1,
-                  softWrap: true,
-                  style: const TextStyle(
-                    overflow: TextOverflow.clip,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Image.network(
+                    item.image,
+                    width: 150,
+                    height: 100,
                   ),
-                ),
-                subTitle: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
+                  ListTile(
+                    isThreeLine: true,
+                    title: Text(
                       item.title,
                       maxLines: 1,
                       softWrap: true,
                       style: const TextStyle(
-                        fontSize: 12,
                         overflow: TextOverflow.clip,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      '\$${item.price.toString()}',
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
+                    subtitle: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            item.title,
+                            maxLines: 1,
+                            softWrap: true,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              overflow: TextOverflow.clip,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: Text(
+                            '\$${item.price.toString().trim()}',
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           );

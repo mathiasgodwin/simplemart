@@ -5,11 +5,11 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class SizedNetworkImage extends StatelessWidget {
   const SizedNetworkImage({
-    Key? key,
     required this.imageUrl,
     required this.imageWidth,
     required this.imageHeight,
     this.cacheManager,
+    Key? key,
   }) : super(key: key);
 
   final BaseCacheManager? cacheManager;
@@ -23,7 +23,7 @@ class SizedNetworkImage extends StatelessWidget {
       width: imageWidth,
       height: imageHeight,
       child: AspectRatio(
-        aspectRatio: 1.0,
+        aspectRatio: 1,
         child: Center(
           child: CachedNetworkImage(
             cacheManager: cacheManager,

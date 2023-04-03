@@ -1,13 +1,12 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:promart/promart.dart';
 import 'package:simplemart/src/features/promart/logic/logic.dart';
 import 'package:simplemart/src/features/promart/view/view.dart';
-import 'package:promart/promart.dart';
 
 class WishlistPage extends StatelessWidget {
-  const WishlistPage({Key? key}) : super(key: key);
+  const WishlistPage({super.key});
 
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => const WishlistPage());
@@ -45,8 +44,7 @@ class WishlistPage extends StatelessWidget {
 
 class _WishlistListView extends StatelessWidget {
   final BuiltList<WishlistItem> wishListItem;
-  const _WishlistListView({required this.wishListItem, Key? key})
-      : super(key: key);
+  const _WishlistListView({required this.wishListItem, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,7 @@ class _WishlistListView extends StatelessWidget {
 }
 
 class _WishlistItem extends StatelessWidget {
-  const _WishlistItem({required this.item, Key? key}) : super(key: key);
+  const _WishlistItem({required this.item, super.key});
 
   final WishlistItem item;
 

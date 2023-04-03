@@ -2,11 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:simplemart/src/features/promart/logic/logic.dart';
-import 'package:simplemart/src/features/promart/view/view.dart';
 import 'package:promart/promart.dart';
 import 'package:simplemart/src/configs/theme/styles.dart';
+import 'package:simplemart/src/features/promart/logic/logic.dart';
+import 'package:simplemart/src/features/promart/view/view.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage(this.productData, {super.key});
@@ -27,38 +26,64 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Scaffold(
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          GFButton(
-            color: Colors.black,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_bag),
             onPressed: () {
-              context
-                  .read<CartBloc>()
-                  .add(ProductAdded(product: widget.productData));
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(
-                    content: Text('Item Added to Cart'),
-                    duration: Duration(seconds: 1),
-                  ),
-                );
+              Navigator.of(context).push(CartPage.route());
             },
-            text: 'ADD TO CART',
-          ),
-          GFButton(
-            color: theme.primaryColor,
-            onPressed: () {
-              context
-                  .read<CartBloc>()
-                  .add(ProductAdded(product: widget.productData));
-              Navigator.of(context).push<void>(CartPage.route());
-            },
-            text: 'BUY NOW',
           )
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                context
+                    .read<CartBloc>()
+                    .add(ProductAdded(product: widget.productData));
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text('Item Added to Cart'),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+              },
+              child: const Text('ADD TO CART'),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(
+                  theme.colorScheme.inverseSurface,
+                ),
+                foregroundColor: MaterialStatePropertyAll(
+                  theme.colorScheme.onInverseSurface,
+                ),
+              ),
+              onPressed: () {
+                context
+                    .read<CartBloc>()
+                    .add(ProductAdded(product: widget.productData));
+                Navigator.of(context).push<void>(CartPage.route());
+              },
+              child: const Text('BUY NOW'),
+            )
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
@@ -117,37 +142,15 @@ class _ProductImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFCard(
-      padding: EdgeInsets.zero,
-      image: Image.network(
+    final theme = Theme.of(context);
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(12),
+      ),
+      child: Image.network(
         data.image,
-        height: 250,
+        height: 300,
       ),
-      showImage: true,
-      title: GFListTile(
-        padding: const EdgeInsets.only(top: 16),
-        margin: EdgeInsets.zero,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            GFIconButton(
-              color: GFColors.TRANSPARENT,
-              icon: const Icon(Icons.arrow_back_ios_rounded),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            GFIconButton(
-              color: GFColors.TRANSPARENT,
-              icon: const Icon(Icons.shopping_bag),
-              onPressed: () {
-                Navigator.of(context).push(CartPage.route());
-              },
-            )
-          ],
-        ),
-      ),
-      titlePosition: GFPosition.start,
     );
   }
 }
@@ -212,23 +215,28 @@ class _ProductSubDetails extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  GFButton(
+                  FilledButton(
                     onPressed: () {},
-                    color: Colors.green.withOpacity(0.1),
-                    text: 'Extra ₦200 Off',
-                    textStyle:
-                        const TextStyle(fontSize: 10, color: Colors.black),
-                    shape: GFButtonShape.pills,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.green.withOpacity(0.1),
+                    ),
+                    child: const Text(
+                      'Extra ₦200 Off',
+                      style: TextStyle(fontSize: 10, color: Colors.black),
+                    ),
                   ),
                   const SizedBox(
                     width: 3,
                   ),
-                  GFButton(
+                  FilledButton(
                     onPressed: () {},
-                    color: Colors.red.withOpacity(0.1),
-                    text: 'EMI Starts from ₦451',
-                    textStyle: const TextStyle(fontSize: 10, color: Colors.red),
-                    shape: GFButtonShape.pills,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.red.withOpacity(0.1),
+                    ),
+                    child: const Text(
+                      'EMI Starts from ₦451',
+                      style: TextStyle(fontSize: 10, color: Colors.red),
+                    ),
                   ),
                 ],
               ),
@@ -238,9 +246,8 @@ class _ProductSubDetails extends StatelessWidget {
 
                   // Check if item is a favorite already
                   final isWished = state.items.contains(wish);
-                  return GFIconButton(
+                  return IconButton(
                     key: const Key('GFIconbutton_wishlist_icon'),
-                    shape: GFIconButtonShape.circle,
                     color: Colors.white,
                     icon: isWished
                         ? const Icon(
