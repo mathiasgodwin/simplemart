@@ -90,14 +90,16 @@ class Strokes {
 class Shadows {
   static List<BoxShadow> get universal => [
         BoxShadow(
-            color: const Color(0xff333333).withOpacity(.15),
-            blurRadius: 10,),
+          color: const Color(0xff333333).withOpacity(.15),
+          blurRadius: 10,
+        ),
       ];
   static List<BoxShadow> get small => [
         BoxShadow(
-            color: const Color(0xff333333).withOpacity(.15),
-            blurRadius: 3,
-            offset: const Offset(0, 1),),
+          color: const Color(0xff333333).withOpacity(.15),
+          blurRadius: 3,
+          offset: const Offset(0, 1),
+        ),
       ];
 }
 

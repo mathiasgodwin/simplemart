@@ -1,6 +1,5 @@
 part of 'cart_bloc.dart';
 
-
 @freezed
 abstract class CartEvent with _$CartEvent {
   const factory CartEvent.added({
@@ -18,5 +17,4 @@ abstract class CartEvent with _$CartEvent {
   const factory CartEvent.countDecreased({
     required CartItem item,
   }) = CartItemCountDecreased;
-  
 }

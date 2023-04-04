@@ -16,7 +16,8 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     on<CartItemCountDecreased>(_onCartItemCountDecreased);
   }
 
-  Future<void> _onProductAdded(ProductAdded event, Emitter<CartState> emit) async {
+  Future<void> _onProductAdded(
+      ProductAdded event, Emitter<CartState> emit) async {
     final cartItem = CartItem(count: 1, product: event.product);
     final cartItemIndex = state.items.indexWhere(
       (item) => item.product == cartItem.product,
@@ -39,7 +40,9 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
   }
 
   Future<void> _onCartItemRemoved(
-      CartItemRemoved event, Emitter<CartState> emit,) async {
+    CartItemRemoved event,
+    Emitter<CartState> emit,
+  ) async {
     final cartItem = event.item;
 
     // Remove the cart item from the cart list
@@ -49,7 +52,9 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
   }
 
   Future<void> _onCartItemCountIncreased(
-      CartItemCountIncreased event, Emitter<CartState> emit,) async {
+    CartItemCountIncreased event,
+    Emitter<CartState> emit,
+  ) async {
     final cartItem = event.item;
     final cartItemIndex = state.items.indexOf(cartItem);
 
@@ -65,7 +70,9 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
   }
 
   Future<void> _onCartItemCountDecreased(
-      CartItemCountDecreased event, Emitter<CartState> emit,) async {
+    CartItemCountDecreased event,
+    Emitter<CartState> emit,
+  ) async {
     final cartItem = event.item;
 
     if (cartItem.count > 1) {

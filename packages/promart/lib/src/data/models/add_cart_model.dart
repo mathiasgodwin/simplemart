@@ -38,7 +38,11 @@ class AddCartModel extends Equatable {
       };
 
   @override
-  List<Object?> get props => [ userId, date, products, ];
+  List<Object?> get props => [
+        userId,
+        date,
+        products,
+      ];
 }
 
 class AddCartProduct extends Equatable {

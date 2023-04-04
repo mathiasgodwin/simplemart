@@ -1,6 +1,6 @@
 part of 'bottom_bar_selector_cubit.dart';
 
-enum HomeBottomBar { home, wishList,cart, userAccount }
+enum HomeBottomBar { home, wishList, cart, userAccount }
 
 class BottomBarSelectorState extends Equatable {
   const BottomBarSelectorState({

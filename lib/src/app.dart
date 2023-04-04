@@ -35,7 +35,6 @@ class _AppBloc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-      
         BlocProvider<PromartCatalogCubit>(
           create: (_) => PromartCatalogCubit(
             context.read<PromartRepository>(),
@@ -65,7 +64,6 @@ class AppView extends StatefulWidget {
 
 class _AppViewState extends State<AppView> {
   final _navigatorKey = GlobalKey<NavigatorState>();
-
 
   @override
   Widget build(BuildContext context) {
