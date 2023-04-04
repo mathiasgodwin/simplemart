@@ -5,8 +5,8 @@ import 'package:simplemart/src/features/promart/view/view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => const HomePage());

@@ -11,7 +11,7 @@ part of 'wishlist_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods',);
 
 /// @nodoc
 class _$WishlistEventTearOff {
@@ -72,7 +72,7 @@ mixin _$WishlistEvent {
 /// @nodoc
 abstract class $WishlistEventCopyWith<$Res> {
   factory $WishlistEventCopyWith(
-          WishlistEvent value, $Res Function(WishlistEvent) then) =
+          WishlistEvent value, $Res Function(WishlistEvent) then,) =
       _$WishlistEventCopyWithImpl<$Res>;
   $Res call({AllProductData product});
 }
@@ -95,7 +95,7 @@ class _$WishlistEventCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as AllProductData,
-    ));
+    ),);
   }
 }
 
@@ -126,7 +126,7 @@ class _$WishAddedCopyWithImpl<$Res> extends _$WishlistEventCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as AllProductData,
-    ));
+    ),);
   }
 }
 
@@ -254,7 +254,7 @@ mixin _$WishlistState {
 /// @nodoc
 abstract class $WishlistStateCopyWith<$Res> {
   factory $WishlistStateCopyWith(
-          WishlistState value, $Res Function(WishlistState) then) =
+          WishlistState value, $Res Function(WishlistState) then,) =
       _$WishlistStateCopyWithImpl<$Res>;
   $Res call({BuiltList<WishlistItem> items});
 }
@@ -277,7 +277,7 @@ class _$WishlistStateCopyWithImpl<$Res>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as BuiltList<WishlistItem>,
-    ));
+    ),);
   }
 }
 
@@ -285,7 +285,7 @@ class _$WishlistStateCopyWithImpl<$Res>
 abstract class _$WishlistStateCopyWith<$Res>
     implements $WishlistStateCopyWith<$Res> {
   factory _$WishlistStateCopyWith(
-          _WishlistState value, $Res Function(_WishlistState) then) =
+          _WishlistState value, $Res Function(_WishlistState) then,) =
       __$WishlistStateCopyWithImpl<$Res>;
   @override
   $Res call({BuiltList<WishlistItem> items});
@@ -296,7 +296,7 @@ class __$WishlistStateCopyWithImpl<$Res>
     extends _$WishlistStateCopyWithImpl<$Res>
     implements _$WishlistStateCopyWith<$Res> {
   __$WishlistStateCopyWithImpl(
-      _WishlistState _value, $Res Function(_WishlistState) _then)
+      _WishlistState _value, $Res Function(_WishlistState) _then,)
       : super(_value, (v) => _then(v as _WishlistState));
 
   @override
@@ -311,7 +311,7 @@ class __$WishlistStateCopyWithImpl<$Res>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as BuiltList<WishlistItem>,
-    ));
+    ),);
   }
 }
 

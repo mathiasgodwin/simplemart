@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class SizedNetworkImage extends StatelessWidget {
@@ -9,8 +8,8 @@ class SizedNetworkImage extends StatelessWidget {
     required this.imageWidth,
     required this.imageHeight,
     this.cacheManager,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final BaseCacheManager? cacheManager;
   final String imageUrl;

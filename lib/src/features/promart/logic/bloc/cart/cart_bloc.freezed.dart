@@ -11,7 +11,7 @@ part of 'cart_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods',);
 
 /// @nodoc
 class _$CartEventTearOff {
@@ -117,7 +117,7 @@ class _$CartEventCopyWithImpl<$Res> implements $CartEventCopyWith<$Res> {
 /// @nodoc
 abstract class $ProductAddedCopyWith<$Res> {
   factory $ProductAddedCopyWith(
-          ProductAdded value, $Res Function(ProductAdded) then) =
+          ProductAdded value, $Res Function(ProductAdded) then,) =
       _$ProductAddedCopyWithImpl<$Res>;
   $Res call({AllProductData product});
 }
@@ -126,7 +126,7 @@ abstract class $ProductAddedCopyWith<$Res> {
 class _$ProductAddedCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
     implements $ProductAddedCopyWith<$Res> {
   _$ProductAddedCopyWithImpl(
-      ProductAdded _value, $Res Function(ProductAdded) _then)
+      ProductAdded _value, $Res Function(ProductAdded) _then,)
       : super(_value, (v) => _then(v as ProductAdded));
 
   @override
@@ -141,7 +141,7 @@ class _$ProductAddedCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as AllProductData,
-    ));
+    ),);
   }
 }
 
@@ -263,7 +263,7 @@ abstract class ProductAdded implements CartEvent {
 /// @nodoc
 abstract class $CartItemRemovedCopyWith<$Res> {
   factory $CartItemRemovedCopyWith(
-          CartItemRemoved value, $Res Function(CartItemRemoved) then) =
+          CartItemRemoved value, $Res Function(CartItemRemoved) then,) =
       _$CartItemRemovedCopyWithImpl<$Res>;
   $Res call({CartItem item});
 
@@ -274,7 +274,7 @@ abstract class $CartItemRemovedCopyWith<$Res> {
 class _$CartItemRemovedCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
     implements $CartItemRemovedCopyWith<$Res> {
   _$CartItemRemovedCopyWithImpl(
-      CartItemRemoved _value, $Res Function(CartItemRemoved) _then)
+      CartItemRemoved _value, $Res Function(CartItemRemoved) _then,)
       : super(_value, (v) => _then(v as CartItemRemoved));
 
   @override
@@ -289,7 +289,7 @@ class _$CartItemRemovedCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as CartItem,
-    ));
+    ),);
   }
 
   @override
@@ -417,7 +417,7 @@ abstract class CartItemRemoved implements CartEvent {
 /// @nodoc
 abstract class $CartItemCountIncreasedCopyWith<$Res> {
   factory $CartItemCountIncreasedCopyWith(CartItemCountIncreased value,
-          $Res Function(CartItemCountIncreased) then) =
+          $Res Function(CartItemCountIncreased) then,) =
       _$CartItemCountIncreasedCopyWithImpl<$Res>;
   $Res call({CartItem item});
 
@@ -429,7 +429,7 @@ class _$CartItemCountIncreasedCopyWithImpl<$Res>
     extends _$CartEventCopyWithImpl<$Res>
     implements $CartItemCountIncreasedCopyWith<$Res> {
   _$CartItemCountIncreasedCopyWithImpl(CartItemCountIncreased _value,
-      $Res Function(CartItemCountIncreased) _then)
+      $Res Function(CartItemCountIncreased) _then,)
       : super(_value, (v) => _then(v as CartItemCountIncreased));
 
   @override
@@ -444,7 +444,7 @@ class _$CartItemCountIncreasedCopyWithImpl<$Res>
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as CartItem,
-    ));
+    ),);
   }
 
   @override
@@ -484,7 +484,7 @@ class _$CartItemCountIncreased implements CartItemCountIncreased {
   @override
   $CartItemCountIncreasedCopyWith<CartItemCountIncreased> get copyWith =>
       _$CartItemCountIncreasedCopyWithImpl<CartItemCountIncreased>(
-          this, _$identity);
+          this, _$identity,);
 
   @override
   @optionalTypeArgs
@@ -574,7 +574,7 @@ abstract class CartItemCountIncreased implements CartEvent {
 /// @nodoc
 abstract class $CartItemCountDecreasedCopyWith<$Res> {
   factory $CartItemCountDecreasedCopyWith(CartItemCountDecreased value,
-          $Res Function(CartItemCountDecreased) then) =
+          $Res Function(CartItemCountDecreased) then,) =
       _$CartItemCountDecreasedCopyWithImpl<$Res>;
   $Res call({CartItem item});
 
@@ -586,7 +586,7 @@ class _$CartItemCountDecreasedCopyWithImpl<$Res>
     extends _$CartEventCopyWithImpl<$Res>
     implements $CartItemCountDecreasedCopyWith<$Res> {
   _$CartItemCountDecreasedCopyWithImpl(CartItemCountDecreased _value,
-      $Res Function(CartItemCountDecreased) _then)
+      $Res Function(CartItemCountDecreased) _then,)
       : super(_value, (v) => _then(v as CartItemCountDecreased));
 
   @override
@@ -601,7 +601,7 @@ class _$CartItemCountDecreasedCopyWithImpl<$Res>
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as CartItem,
-    ));
+    ),);
   }
 
   @override
@@ -641,7 +641,7 @@ class _$CartItemCountDecreased implements CartItemCountDecreased {
   @override
   $CartItemCountDecreasedCopyWith<CartItemCountDecreased> get copyWith =>
       _$CartItemCountDecreasedCopyWithImpl<CartItemCountDecreased>(
-          this, _$identity);
+          this, _$identity,);
 
   @override
   @optionalTypeArgs
@@ -775,14 +775,14 @@ class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as BuiltList<CartItem>,
-    ));
+    ),);
   }
 }
 
 /// @nodoc
 abstract class _$CartStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
   factory _$CartStateCopyWith(
-          _CartState value, $Res Function(_CartState) then) =
+          _CartState value, $Res Function(_CartState) then,) =
       __$CartStateCopyWithImpl<$Res>;
   @override
   $Res call({BuiltList<CartItem> items});
@@ -806,7 +806,7 @@ class __$CartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as BuiltList<CartItem>,
-    ));
+    ),);
   }
 }
 

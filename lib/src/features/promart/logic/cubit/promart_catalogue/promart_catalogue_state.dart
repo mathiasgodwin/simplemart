@@ -3,14 +3,14 @@ part of 'promart_catalogue_cubit.dart';
 enum PromartCatalogStatus {initial, loading, loaded, failure }
 
 class PromartCatalogState extends Equatable {
-  final PromartCatalogStatus status;
-  final AllProductModel? catalog;
-  final String? errorMessage;
 
   const PromartCatalogState(
       {this.status = PromartCatalogStatus.initial,
       this.catalog,
-      this.errorMessage});
+      this.errorMessage,});
+  final PromartCatalogStatus status;
+  final AllProductModel? catalog;
+  final String? errorMessage;
 
   @override
   List<Object?> get props => [status, catalog, errorMessage];

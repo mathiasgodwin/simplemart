@@ -134,7 +134,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
 class _ProductImageCard extends StatelessWidget {
   const _ProductImageCard({
-    super.key,
     required this.data,
   });
 
@@ -158,7 +157,6 @@ class _ProductImageCard extends StatelessWidget {
 class _ProductSubDetails extends StatelessWidget {
   const _ProductSubDetails({
     required this.data,
-    super.key,
   });
 
   final AllProductData data;

@@ -1,9 +1,9 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:promart/promart.dart';
 import 'package:simplemart/src/features/promart/logic/logic.dart';
 import 'package:simplemart/src/features/promart/view/view.dart';
-import 'package:promart/promart.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -41,7 +41,7 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartListView extends StatelessWidget {
-  const _CartListView({required this.cartItems, super.key});
+  const _CartListView({required this.cartItems});
 
   final BuiltList<CartItem> cartItems;
   double get totalPrice =>
@@ -60,7 +60,7 @@ class _CartListView extends StatelessWidget {
 }
 
 class _CartListItem extends StatelessWidget {
-  const _CartListItem({required this.item, super.key});
+  const _CartListItem({required this.item});
 
   final CartItem item;
 

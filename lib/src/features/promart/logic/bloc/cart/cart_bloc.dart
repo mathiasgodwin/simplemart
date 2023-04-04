@@ -16,7 +16,7 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     on<CartItemCountDecreased>(_onCartItemCountDecreased);
   }
 
-  void _onProductAdded(ProductAdded event, Emitter<CartState> emit) async {
+  Future<void> _onProductAdded(ProductAdded event, Emitter<CartState> emit) async {
     final cartItem = CartItem(count: 1, product: event.product);
     final cartItemIndex = state.items.indexWhere(
       (item) => item.product == cartItem.product,
@@ -24,7 +24,7 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
 
     if (cartItemIndex >= 0) {
       // Counter value (+1) for increasing the items if item already in cart list
-      int value = 1;
+      const value = 1;
       final items = state.items.rebuild(
         (builder) => builder[cartItemIndex] =
             cartItem.copyWith(count: cartItem.count + value),
@@ -38,8 +38,8 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     }
   }
 
-  void _onCartItemRemoved(
-      CartItemRemoved event, Emitter<CartState> emit) async {
+  Future<void> _onCartItemRemoved(
+      CartItemRemoved event, Emitter<CartState> emit,) async {
     final cartItem = event.item;
 
     // Remove the cart item from the cart list
@@ -48,14 +48,14 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     emit(state.copyWith(items: items));
   }
 
-  void _onCartItemCountIncreased(
-      CartItemCountIncreased event, Emitter<CartState> emit) async {
+  Future<void> _onCartItemCountIncreased(
+      CartItemCountIncreased event, Emitter<CartState> emit,) async {
     final cartItem = event.item;
     final cartItemIndex = state.items.indexOf(cartItem);
 
     if (cartItemIndex >= 0) {
       // Counter value (+1) for increasing the items if item already in cart list
-      int value = 1;
+      const value = 1;
       final items = state.items.rebuild(
         (builder) => builder[cartItemIndex] =
             cartItem.copyWith(count: cartItem.count + value),
@@ -64,8 +64,8 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     }
   }
 
-  void _onCartItemCountDecreased(
-      CartItemCountDecreased event, Emitter<CartState> emit) async {
+  Future<void> _onCartItemCountDecreased(
+      CartItemCountDecreased event, Emitter<CartState> emit,) async {
     final cartItem = event.item;
 
     if (cartItem.count > 1) {
@@ -74,7 +74,7 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
       if (cartItemIndex >= 0) {
         // Counter value (-1) for decreasing the items in the cart list
         // if the item count is >= 1
-        int value = -1;
+        const value = -1;
         final items = state.items.rebuild(
           (builder) => builder[cartItemIndex] =
               cartItem.copyWith(count: cartItem.count + value),

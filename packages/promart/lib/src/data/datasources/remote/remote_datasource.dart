@@ -62,5 +62,6 @@ class RemoteDataSource implements IRemoteDataSource {
         throw Exception('Could not load available products');
       }
     }
+    return null;
   }
 }

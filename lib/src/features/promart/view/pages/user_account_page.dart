@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simplemart/src/configs/theme/styles.dart';
 
 class UserAccountPage extends StatelessWidget {
-  const UserAccountPage({Key? key}) : super(key: key);
+  const UserAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {

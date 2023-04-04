@@ -64,7 +64,7 @@ class NetworkException implements Exception {
         } else {
           return const NetworkException("Unexpected error occurred");
         }
-      } on FormatException catch (e) {
+      } on FormatException {
         return const NetworkException("Unexpected error occurred");
       } catch (_) {
         return const NetworkException("Unexpected error occurred");

@@ -7,9 +7,8 @@ import 'package:simplemart/src/configs/theme/theme.dart';
 import 'package:simplemart/src/features/promart/logic/bloc/bloc.dart';
 import 'package:simplemart/src/features/promart/logic/bottom_bar_selector/bottom_bar_selector_cubit.dart';
 import 'package:simplemart/src/features/promart/logic/cubit/promart_catalogue/promart_catalogue_cubit.dart';
-import 'package:simplemart/src/features/promart/view/pages/splash_loader_page.dart';
 
-import 'features/promart/view/view.dart';
+import 'package:simplemart/src/features/promart/view/view.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -30,9 +29,7 @@ class App extends StatelessWidget {
 }
 
 class _AppBloc extends StatelessWidget {
-  const _AppBloc({
-    super.key,
-  });
+  const _AppBloc();
 
   @override
   Widget build(BuildContext context) {

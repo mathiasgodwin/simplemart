@@ -9,7 +9,7 @@ import 'package:simplemart/src/features/promart/view/view.dart';
 /// TODO: Finish the docs
 /// CatalogPage to...
 class CatalogPage extends StatelessWidget {
-  const CatalogPage();
+  const CatalogPage({super.key});
 
   /// Static named route for page
   static const String route = 'Catalog';
@@ -109,7 +109,7 @@ class _ImageCarousel extends StatelessWidget {
       children: [
         for (int i = 1; i <= 5; i++)
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(10),

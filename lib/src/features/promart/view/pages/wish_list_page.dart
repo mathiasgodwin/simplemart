@@ -43,8 +43,8 @@ class WishlistPage extends StatelessWidget {
 }
 
 class _WishlistListView extends StatelessWidget {
+  const _WishlistListView({required this.wishListItem});
   final BuiltList<WishlistItem> wishListItem;
-  const _WishlistListView({required this.wishListItem, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _WishlistListView extends StatelessWidget {
 }
 
 class _WishlistItem extends StatelessWidget {
-  const _WishlistItem({required this.item, super.key});
+  const _WishlistItem({required this.item});
 
   final WishlistItem item;
 

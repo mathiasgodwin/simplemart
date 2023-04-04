@@ -91,15 +91,13 @@ class Shadows {
   static List<BoxShadow> get universal => [
         BoxShadow(
             color: const Color(0xff333333).withOpacity(.15),
-            spreadRadius: 0,
-            blurRadius: 10),
+            blurRadius: 10,),
       ];
   static List<BoxShadow> get small => [
         BoxShadow(
             color: const Color(0xff333333).withOpacity(.15),
-            spreadRadius: 0,
             blurRadius: 3,
-            offset: const Offset(0, 1)),
+            offset: const Offset(0, 1),),
       ];
 }
 
@@ -165,7 +163,7 @@ extension FormFactor on BuildContext {
   bool get isSmall => MediaQuery.of(this).size.shortestSide < handset;
 
   ScreenSize get screenSize {
-    double deviceWidth = MediaQuery.of(this).size.shortestSide;
+    final deviceWidth = MediaQuery.of(this).size.shortestSide;
     if (deviceWidth > desktop) return ScreenSize.xLarge;
     if (deviceWidth > tablet) return ScreenSize.large;
     if (deviceWidth > handset) return ScreenSize.normal;

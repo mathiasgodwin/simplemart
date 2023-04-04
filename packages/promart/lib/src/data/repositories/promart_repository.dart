@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:promart/promart.dart';
 
 class PromartRepository implements IPromartRepository {
