@@ -1,7 +1,7 @@
 # Simplemart
 
 # Note!
-<i>fork of [promart](https://github.com/mathiasgodwin/promart.git), A project I worked on in my early days with Flutter. Main aim is to extensively Refactor and Add test. For some reason, I don't want to add the changes directly to [promart](https://github.com/mathiasgodwin/promart.git)</i>. So I created Simplemart to demostrate unit/widget/integration in Flutter while using a very old project for start.
+<i>fork of [promart](https://github.com/mathiasgodwin/promart.git), A project I worked on in my early days with Flutter. Main aim is to extensively Refactor and Add test. For some reason, I don't want to add the changes directly to [promart](https://github.com/mathiasgodwin/promart.git)</i>. So I created Simplemart to demonstrate unit/widget/integration in Flutter while using a very old project for start.
 
 <br>
 <br>
